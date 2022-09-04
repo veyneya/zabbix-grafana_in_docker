@@ -75,6 +75,7 @@ services:
       - /sys:/sys
       - /dev:/dev
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./zabbix_agentd.conf:/etc/zabbix/zabbix_agentd.conf
     privileged: true
     pid: "host"
     restart: always
@@ -82,6 +83,7 @@ services:
       - server
     environment:
       - ZBX_SERVER_HOST=server
+      - ZBS_ACTIVE_ALLOW=true
     networks:
       - monitor-net
   snmptraps:
